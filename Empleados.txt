@@ -1,0 +1,2 @@
+Juan Perez,123456789,1990-01-15,Bogotá,1234567,jperez@email.com,Calle 123,Barrio A,Ciudad A,Urb A,101
+Maria Gomez,987654321,1985-05-20,Medellín,9876543,mgomez@email.com,Calle 456,Barrio B,Ciudad B,Urb B,202
