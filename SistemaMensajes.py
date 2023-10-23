@@ -176,9 +176,6 @@ class DraftsStack:
     def esta_vacia(self):
         return len(self.messages) == 0
 
-# Resto del código de la Parte 2...
-
-# Resto del código de la Parte 2...
 
 # Función para registrar un nuevo usuario en el sistema
 def registrar_usuario(empleados, contrasenas):
