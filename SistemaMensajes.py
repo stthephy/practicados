@@ -68,28 +68,6 @@ def cargar_contrasenas():
             cedula, contrasena, tipo = line.strip().split(',')
             contrasenas[cedula] = (contrasena, tipo)
     return contrasenas
-
-def admin_main(empleados, contrasenas):
-    while True:
-        print("\nFuncionalidades para administradores:")
-        print("1. Registrar Nuevo Usuario")
-        print("2. Cambiar Contraseña de Usuario")
-        print("3. Eliminar Usuario")
-        print("4. Salir")
-
-        opcion = input("Selecciona una opción: ")
-
-        if opcion == "1":
-            registrar_usuario(empleados, contrasenas)
-        elif opcion == "2":
-            cambiar_contrasena(contrasenas)
-        elif opcion == "3":
-            eliminar_usuario(empleados, contrasenas)
-        elif opcion == "4":
-            # Implementa la lógica para guardar los cambios en los archivos antes de salir
-            break
-        else:
-            print("Opción no válida. Inténtalo de nuevo.")
 def registrar_usuario(empleados, contrasenas):
     cedula = input("Cédula del nuevo usuario: ")
     if cedula in contrasenas:
@@ -129,6 +107,28 @@ def eliminar_usuario(empleados, contrasenas):
         print("Usuario eliminado del sistema.")
     else:
         print("El usuario no existe.")
+def admin_main(empleados, contrasenas):
+    while True:
+        print("\nFuncionalidades para administradores:")
+        print("1. Registrar Nuevo Usuario")
+        print("2. Cambiar Contraseña de Usuario")
+        print("3. Eliminar Usuario")
+        print("4. Salir")
+
+        opcion = input("Selecciona una opción: ")
+
+        if opcion == "1":
+            registrar_usuario(empleados, contrasenas)
+        elif opcion == "2":
+            cambiar_contrasena(contrasenas)
+        elif opcion == "3":
+            eliminar_usuario(empleados, contrasenas)
+        elif opcion == "4":
+            # Implementa la lógica para guardar los cambios en los archivos antes de salir
+            break
+        else:
+            print("Opción no válida. Inténtalo de nuevo.")
+
 # Función para autenticar al usuario
 # Función para autenticar al usuario
 def autenticar(contrasenas):
@@ -213,9 +213,3 @@ class DraftsStack:
 
     def esta_vacia(self):
         return len(self.messages) == 0
-
-
-
-
-# Función principal para administradores
-# Función principal para administradores
