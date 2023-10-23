@@ -90,7 +90,45 @@ def admin_main(empleados, contrasenas):
             break
         else:
             print("Opción no válida. Inténtalo de nuevo.")
+def registrar_usuario(empleados, contrasenas):
+    cedula = input("Cédula del nuevo usuario: ")
+    if cedula in contrasenas:
+        print("El usuario ya existe.")
+    else:
+        nombre = input("Nombre: ")
+        fecha_nacimiento = input("Fecha de Nacimiento: ")
+        ciudad_nacimiento = input("Ciudad de Nacimiento: ")
+        telefono = input("Teléfono: ")
+        correo = input("Correo Electrónico: ")
+        direccion = input("Dirección: ")
+        tipo = input("Tipo de usuario (empleado o administrador): ")
 
+        empleado = Employee(cedula, nombre, fecha_nacimiento, ciudad_nacimiento, telefono, correo, direccion)
+        contrasena = input("Contraseña: ")
+
+        empleados[cedula] = empleado
+        contrasenas[cedula] = (contrasena, tipo)
+        print(f"Nuevo usuario registrado como {tipo}.")
+
+# Función para cambiar la contraseña de un usuario
+def cambiar_contrasena(contrasenas):
+    cedula = input("Cédula del usuario al que deseas cambiar la contraseña: ")
+    if cedula in contrasenas:
+        nueva_contrasena = input("Nueva contraseña: ")
+        contrasenas[cedula] = (nueva_contrasena, contrasenas[cedula][1])
+        print("Contraseña cambiada con éxito.")
+    else:
+        print("El usuario no existe.")
+
+# Función para eliminar un usuario del sistema
+def eliminar_usuario(empleados, contrasenas):
+    cedula = input("Cédula del usuario que deseas eliminar: ")
+    if cedula in contrasenas:
+        del contrasenas[cedula]
+        del empleados[cedula]
+        print("Usuario eliminado del sistema.")
+    else:
+        print("El usuario no existe.")
 # Función para autenticar al usuario
 # Función para autenticar al usuario
 def autenticar(contrasenas):
@@ -177,46 +215,7 @@ class DraftsStack:
         return len(self.messages) == 0
 
 
-# Función para registrar un nuevo usuario en el sistema
-def registrar_usuario(empleados, contrasenas):
-    cedula = input("Cédula del nuevo usuario: ")
-    if cedula in contrasenas:
-        print("El usuario ya existe.")
-    else:
-        nombre = input("Nombre: ")
-        fecha_nacimiento = input("Fecha de Nacimiento: ")
-        ciudad_nacimiento = input("Ciudad de Nacimiento: ")
-        telefono = input("Teléfono: ")
-        correo = input("Correo Electrónico: ")
-        direccion = input("Dirección: ")
-        tipo = input("Tipo de usuario (empleado o administrador): ")
 
-        empleado = Employee(cedula, nombre, fecha_nacimiento, ciudad_nacimiento, telefono, correo, direccion)
-        contrasena = input("Contraseña: ")
-
-        empleados[cedula] = empleado
-        contrasenas[cedula] = (contrasena, tipo)
-        print(f"Nuevo usuario registrado como {tipo}.")
-
-# Función para cambiar la contraseña de un usuario
-def cambiar_contrasena(contrasenas):
-    cedula = input("Cédula del usuario al que deseas cambiar la contraseña: ")
-    if cedula in contrasenas:
-        nueva_contrasena = input("Nueva contraseña: ")
-        contrasenas[cedula] = (nueva_contrasena, contrasenas[cedula][1])
-        print("Contraseña cambiada con éxito.")
-    else:
-        print("El usuario no existe.")
-
-# Función para eliminar un usuario del sistema
-def eliminar_usuario(empleados, contrasenas):
-    cedula = input("Cédula del usuario que deseas eliminar: ")
-    if cedula in contrasenas:
-        del contrasenas[cedula]
-        del empleados[cedula]
-        print("Usuario eliminado del sistema.")
-    else:
-        print("El usuario no existe.")
 
 # Función principal para administradores
 # Función principal para administradores
