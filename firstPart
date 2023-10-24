@@ -1,0 +1,99 @@
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+
+class List:
+    def __init__(self):
+        self.head = None
+
+    def add(self, data):
+        new_node = Node(data)
+        if self.head is None:
+            self.head = new_node
+            return
+        current = self.head
+        while current.next:
+            current = current.next
+        current.next = new_node
+
+    def remove(self, data):
+        current = self.head
+        if current is not None and current.data == data:
+            self.head = current.next
+            current = None
+            return
+        prev = None
+        while current is not None and current.data != data:
+            prev = current
+            current = current.next
+        if current is None:
+            return
+        prev.next = current.next
+        current = None
+
+class DoubleNode:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+        self.prev = None
+
+class DoubleList:
+    def __init__(self):
+        self.head = None
+
+    def add(self, data):
+        new_node = DoubleNode(data)
+        if self.head is None:
+            self.head = new_node
+            return
+        current = self.head
+        while current.next:
+            current = current.next
+        current.next = new_node
+        new_node.prev = current
+
+    def add_before(self, target_data, data):
+        new_node = DoubleNode(data)
+        current = self.head
+        while current is not None and current.data != target_data:
+            current = current.next
+        if current is None:
+            print(f"{target_data} no encontrado en la lista.")
+            return
+        if current.prev is not None:
+            current.prev.next = new_node
+            new_node.prev = current.prev
+        new_node.next = current
+        current.prev = new_node
+        if current == self.head:
+            self.head = new_node
+
+    def add_after(self, target_data, data):
+        new_node = DoubleNode(data)
+        current = self.head
+        while current is not None and current.data != target_data:
+            current = current.next
+        if current is None:
+            print(f"{target_data} no encontrado en la lista.")
+            return
+        new_node.next = current.next
+        if current.next is not None:
+            current.next.prev = new_node
+        current.next = new_node
+        new_node.prev = current
+
+    def remove(self, data):
+        current = self.head
+        while current is not None and current.data != data:
+            current = current.next
+        if current is None:
+            print(f"{data} no encontrado en la lista.")
+            return
+        if current.prev is not None:
+            current.prev.next = current.next
+        if current.next is not None:
+            current.next.prev = current.prev
+        if current == self.head:
+            self.head = current.next
+        current = None
